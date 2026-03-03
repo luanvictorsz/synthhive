@@ -4,7 +4,7 @@ import aeternus from '../assets/projetos/aeternuspoison.png'
 import hexfall from '../assets/projetos/hexfall.png'
 import egito from '../assets/projetos/Egito.png'
 import skiter from '../assets/projetos/skiter.png'
-import fennec from '../assets/projetos/fennecfrenzy.png'
+import fennec from '../assets/projetos/fennecFrenzy.png'
 
 const works = [
   {
