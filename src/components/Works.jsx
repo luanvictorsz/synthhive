@@ -1,31 +1,37 @@
 import { useState, useEffect } from 'react'
 
+import aeternus from '../assets/projetos/aeternuspoison.png'
+import hexfall from '../assets/projetos/hexfall.png'
+import egito from '../assets/projetos/egito.png'
+import skiter from '../assets/projetos/skiter.png'
+import fennec from '../assets/projetos/fennecFrenzy.png'
+
 const works = [
   {
     tag: 'Thumbnail',
     title: 'AETERNUS POISON',
-    image: 'src/assets/projetos/aeternuspoison.png',
+    image: aeternus,
     span: true,
   },
   {
     tag: 'Game Development',
     title: 'HEXFALL',
-    image: 'src/assets/projetos/hexfall.png',
+    image: hexfall,
   },
   {
     tag: 'Animação 3D',
     title: 'EGITO - SÉRIE ANIMADA',
-    image: 'src/assets/projetos/egito.png',
+    image: egito,
   },
-   {
+  {
     tag: 'Visualizer',
     title: 'SKITER - MUSIC VIDEO',
-    image: 'src/assets/projetos/skiter.png',
+    image: skiter,
   },
   {
     tag: 'Game Development',
     title: 'Fennec Frenzy',
-    image: 'src/assets/projetos/fennecFrenzy.png',
+    image: fennec,
   },
 ]
 
