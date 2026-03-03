@@ -1,6 +1,6 @@
 const items = [
   'ANIMAÇÃO 2D', '◆', 'MOTION DESIGN', '◆', 'GAME DEVELOPMENT',
-  '◆', '3D ANIMATION', '◆', 'VFX & COMPOSITING', '◆', 'SOUND DESIGN', '◆',
+   '◆', '3D ANIMATION', '◆', // 'VFX & COMPOSITING', '◆', 'SOUND DESIGN', '◆',
 ]
 
 export default function Marquee() {

@@ -9,10 +9,10 @@ export default function Contact() {
           Tem um projeto em mente? Uma ideia maluca? Uma deadline impossível?
           A gente adora desafios. Manda o brief.
         </p>
-        <a href="mailto:oi@synthhive.studio" style={styles.email}>
-          oi@synthhive.studio
+        <a href="mailto:eragondoledrag@gmail.com" style={styles.email}>
+          eragondoledrag@gmail.com
         </a>
-        <a href="mailto:oi@synthhive.studio" style={styles.btn}>
+        <a href="mailto:eragondoledrag@gmail.com" style={styles.btn}>
           Enviar Mensagem →
         </a>
       </div>

@@ -2,30 +2,30 @@ import { useState, useEffect } from 'react'
 
 const works = [
   {
-    tag: 'Animação 3D',
-    title: 'NEON EXODUS — SÉRIE ANIMADA',
-    image: '/images/neon-exodus.jpg',
+    tag: 'Thumbnail',
+    title: 'AETERNUS POISON',
+    image: 'src/assets/projetos/aeternuspoison.png',
     span: true,
   },
   {
     tag: 'Game Development',
     title: 'HEXFALL',
-    image: '/images/hexfall.jpg',
+    image: 'src/assets/projetos/hexfall.png',
   },
   {
-    tag: 'Motion Design',
-    title: 'VINHETA — GLOBOPLAY',
-    image: '/images/globoplay.jpg',
+    tag: 'Animação 3D',
+    title: 'EGITO - SÉRIE ANIMADA',
+    image: 'src/assets/projetos/egito.png',
+  },
+   {
+    tag: 'Visualizer',
+    title: 'SKITER - MUSIC VIDEO',
+    image: 'src/assets/projetos/skiter.png',
   },
   {
-    tag: 'VFX',
-    title: 'CAMPANHA NIKE BR',
-    image: '/images/nike.jpg',
-  },
-  {
-    tag: 'Animação 2D',
-    title: 'FÁBULAS DO SERTÃO',
-    image: '/images/fabulas.jpg',
+    tag: 'Game Development',
+    title: 'Fennec Frenzy',
+    image: 'src/assets/projetos/fennecFrenzy.png',
   },
 ]
 
