@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
 const data = [
-  { target: 120, label: 'Projetos Entregues' },
-  { target: 47,  label: 'Clientes Satisfeitos' },
-  { target: 8,   label: 'Anos de Estúdio' },
-  { target: 12,  label: 'Prêmios Ganhos' },
+  { target: 20, label: 'Projetos Entregues' },
+  { target: 15,  label: 'Clientes Satisfeitos' },
+  { target: 2,   label: 'Anos de Estúdio' },
+  { target: 5,  label: 'projetos em desenvolvimento' },
 ]
 
 function Counter({ target, label, isMobile }) {
