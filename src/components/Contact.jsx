@@ -10,7 +10,7 @@ export default function Contact() {
           A gente adora desafios. Manda o brief.
         </p>
         <a href="mailto:eragondoledrag@gmail.com" style={styles.email}>
-          eragondoledrag@gmail.com
+          fale com a gente
         </a>
         <a href="mailto:eragondoledrag@gmail.com" style={styles.btn}>
           Enviar Mensagem →
