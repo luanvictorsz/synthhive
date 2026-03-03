@@ -33,7 +33,7 @@ export default function App() {
       <main>
         <Hero />
         <Marquee />
-        <Services />
+        {/* <Services /> */}
         <Works />
         <Stats />
         <Process />
