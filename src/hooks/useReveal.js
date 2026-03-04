@@ -12,9 +12,6 @@ export function useReveal() {
   }, [])
 }
 
-import { useState, useEffect } from 'react'
-
-
 export function useBreakpoint() {
   const [width, setWidth] = useState(
     () => document.documentElement.clientWidth
