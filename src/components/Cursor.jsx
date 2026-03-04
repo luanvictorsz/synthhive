@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useBreakpoint } from '../hooks/useBreakpoint'
+import { useBreakpoint } from '../hooks/useReveal'
 
 export default function Cursor() {
   const cursorRef = useRef(null)
