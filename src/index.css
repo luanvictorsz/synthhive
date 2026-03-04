@@ -24,12 +24,24 @@ body {
   cursor: none;
 }
 
+/* FIX: on touch devices, restore default cursor since Cursor.jsx hides itself */
+@media (pointer: coarse) {
+  body, a, button {
+    cursor: auto;
+  }
+}
+
 a {
   cursor: none;
 }
 
 button {
   cursor: none;
+}
+
+/* FIX: Nav is now position:fixed, so main needs top offset to avoid content hiding under it */
+main {
+  padding-top: 0; /* Hero already has its own top padding for this */
 }
 
 

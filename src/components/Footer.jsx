@@ -14,8 +14,11 @@ export default function Footer() {
     <footer
       style={{
         ...styles.footer,
+        // FIX: padding was hardcoded to 48px, ignoring isMobile
+        padding: isMobile ? '40px 24px' : '48px',
         flexDirection: isMobile ? 'column' : 'row',
         textAlign: isMobile ? 'center' : 'left',
+        alignItems: isMobile ? 'center' : 'center',
         gap: isMobile ? 32 : 0,
       }}
     >
@@ -28,6 +31,7 @@ export default function Footer() {
           ...styles.links,
           flexDirection: isMobile ? 'column' : 'row',
           gap: isMobile ? 16 : 32,
+          alignItems: 'center',
         }}
       >
         {['Instagram', 'Behance', 'LinkedIn', 'YouTube'].map((s) => (
@@ -46,9 +50,7 @@ const styles = {
   footer: {
     background: 'var(--black)',
     borderTop: '1px solid rgba(255,214,0,0.1)',
-    padding: '48px',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'space-between',
     position: 'relative',
     zIndex: 1,

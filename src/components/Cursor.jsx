@@ -1,12 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
   const cursorRef = useRef(null)
   const trailRef = useRef(null)
   const mx = useRef(0)
   const my = useRef(0)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    // Don't render cursor on touch/mobile devices
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+    if (isTouch) return
+
+    setVisible(true)
+
     const move = (e) => {
       mx.current = e.clientX
       my.current = e.clientY
@@ -22,8 +29,14 @@ export default function Cursor() {
       }, 80)
     }
 
-    const grow = () => { if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(2.5)' }
-    const shrink = () => { if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)' }
+    const grow = () => {
+      if (cursorRef.current)
+        cursorRef.current.style.transform = 'translate(-50%,-50%) scale(2.5)'
+    }
+    const shrink = () => {
+      if (cursorRef.current)
+        cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)'
+    }
 
     document.addEventListener('mousemove', move)
     document.querySelectorAll('a, button').forEach(el => {
@@ -35,6 +48,8 @@ export default function Cursor() {
       document.removeEventListener('mousemove', move)
     }
   }, [])
+
+  if (!visible) return null
 
   return (
     <>

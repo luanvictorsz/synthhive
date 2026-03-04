@@ -4,13 +4,23 @@ export default function Nav() {
   const navRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
   const [open, setOpen] = useState(false)
+  const [navHeight, setNavHeight] = useState(0)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
+    const check = () => {
+      setIsMobile(window.innerWidth < 768)
+      if (open && window.innerWidth >= 768) setOpen(false)
+    }
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
-  }, [])
+  }, [open])
+
+  useEffect(() => {
+    if (navRef.current) {
+      setNavHeight(navRef.current.offsetHeight)
+    }
+  })
 
   useEffect(() => {
     const onScroll = () => {
@@ -30,6 +40,8 @@ export default function Nav() {
       ref={navRef}
       style={{
         ...styles.nav,
+        // FIX: 'absolute' meant nav scrolled away on mobile; 'fixed' keeps it sticky
+        position: 'fixed',
         padding: isMobile ? '16px 24px' : '24px 48px',
       }}
     >
@@ -42,14 +54,28 @@ export default function Nav() {
           <button
             onClick={() => setOpen(!open)}
             style={styles.hamburger}
+            aria-label="Toggle menu"
           >
-            <span style={styles.bar}/>
-            <span style={styles.bar}/>
-            <span style={styles.bar}/>
+            <span style={{
+              ...styles.bar,
+              transform: open ? 'rotate(45deg) translate(5px, 6px)' : 'none',
+              transition: 'transform 0.2s',
+            }}/>
+            <span style={{
+              ...styles.bar,
+              opacity: open ? 0 : 1,
+              transition: 'opacity 0.2s',
+            }}/>
+            <span style={{
+              ...styles.bar,
+              transform: open ? 'rotate(-45deg) translate(5px, -6px)' : 'none',
+              transition: 'transform 0.2s',
+            }}/>
           </button>
 
           {open && (
-            <ul style={styles.mobileMenu}>
+            // FIX: use navHeight instead of hardcoded 70 to always align correctly
+            <ul style={{ ...styles.mobileMenu, top: navHeight }}>
               {menuItems(setOpen)}
             </ul>
           )}
@@ -88,7 +114,6 @@ const menuItems = (close) =>
 
 const styles = {
   nav: {
-    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
@@ -114,8 +139,7 @@ const styles = {
     alignItems: 'center',
   },
   mobileMenu: {
-    position: 'absolute',
-    top: 70,
+    position: 'fixed',
     left: 0,
     right: 0,
     background: 'rgba(10,10,10,0.98)',
@@ -124,6 +148,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
+    borderBottom: '1px solid rgba(255,214,0,0.1)',
   },
   link: {
     textDecoration: 'none',
@@ -144,10 +169,13 @@ const styles = {
     gap: 5,
     background: 'transparent',
     border: 'none',
+    padding: 4,
   },
   bar: {
+    display: 'block',
     width: 25,
     height: 3,
     background: 'var(--yellow)',
+    borderRadius: 2,
   },
 }
