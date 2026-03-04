@@ -1,14 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useBreakpoint } from "../hooks/useReveal"
 
 export default function Hero() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const { isMobile } = useBreakpoint()
 
   return (
     <section style={{
@@ -16,7 +9,6 @@ export default function Hero() {
       flexDirection: isMobile ? 'column' : 'row',
       padding: isMobile ? '120px 24px 60px' : '140px 48px 80px'
     }}>
-
       <div style={{
         ...styles.content,
         textAlign: isMobile ? 'center' : 'left'
@@ -59,7 +51,6 @@ export default function Hero() {
           </div>
         </div>
       )}
-
     </section>
   )
 }
@@ -82,7 +73,6 @@ const styles = {
     minHeight: '100vh',
     display: 'flex',
     alignItems: 'center',
-    padding: '140px 48px 80px',
     position: 'relative',
     overflow: 'hidden',
     zIndex: 1,
@@ -130,13 +120,6 @@ const styles = {
     height: 600,
     animation: 'fadeIn 1.2s 1s both',
   },
-  hexRing: {
-    position: 'absolute',
-    border: '1px solid var(--yellow)',
-    borderRadius: '50%',
-    animation: 'spin linear infinite',
-    opacity: 0.15,
-  },
   centerHex: {
     position: 'absolute',
     top: '50%',
@@ -148,6 +131,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    transform: 'translate(-50%, -50%)',
     animation: 'pulse 3s ease-in-out infinite',
   },
   centerHexInner: {

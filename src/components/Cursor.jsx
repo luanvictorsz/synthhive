@@ -1,18 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { useBreakpoint } from '../hooks/useBreakpoint'
 
 export default function Cursor() {
   const cursorRef = useRef(null)
   const trailRef = useRef(null)
   const mx = useRef(0)
   const my = useRef(0)
-  const [visible, setVisible] = useState(false)
+  const { isMobile } = useBreakpoint()
 
   useEffect(() => {
-    // Don't render cursor on touch/mobile devices
-    const isTouch = window.matchMedia('(pointer: coarse)').matches
-    if (isTouch) return
-
-    setVisible(true)
+    if (isMobile) return
 
     const move = (e) => {
       mx.current = e.clientX
@@ -29,14 +26,8 @@ export default function Cursor() {
       }, 80)
     }
 
-    const grow = () => {
-      if (cursorRef.current)
-        cursorRef.current.style.transform = 'translate(-50%,-50%) scale(2.5)'
-    }
-    const shrink = () => {
-      if (cursorRef.current)
-        cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)'
-    }
+    const grow   = () => { if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(2.5)' }
+    const shrink = () => { if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)' }
 
     document.addEventListener('mousemove', move)
     document.querySelectorAll('a, button').forEach(el => {
@@ -44,12 +35,10 @@ export default function Cursor() {
       el.addEventListener('mouseleave', shrink)
     })
 
-    return () => {
-      document.removeEventListener('mousemove', move)
-    }
-  }, [])
+    return () => document.removeEventListener('mousemove', move)
+  }, [isMobile])
 
-  if (!visible) return null
+  if (isMobile) return null
 
   return (
     <>
@@ -61,26 +50,13 @@ export default function Cursor() {
 
 const styles = {
   cursor: {
-    position: 'fixed',
-    width: 16,
-    height: 16,
-    background: 'var(--yellow)',
-    borderRadius: '50%',
-    pointerEvents: 'none',
-    zIndex: 9999,
-    transition: 'transform 0.15s ease, opacity 0.2s',
-    transform: 'translate(-50%, -50%)',
+    position: 'fixed', width: 16, height: 16, background: 'var(--yellow)',
+    borderRadius: '50%', pointerEvents: 'none', zIndex: 9999,
+    transition: 'transform 0.15s ease, opacity 0.2s', transform: 'translate(-50%, -50%)',
   },
   trail: {
-    position: 'fixed',
-    width: 40,
-    height: 40,
-    border: '1px solid var(--yellow)',
-    borderRadius: '50%',
-    pointerEvents: 'none',
-    zIndex: 9998,
-    opacity: 0.4,
-    transition: 'transform 0.35s ease, opacity 0.2s',
-    transform: 'translate(-50%, -50%)',
+    position: 'fixed', width: 40, height: 40, border: '1px solid var(--yellow)',
+    borderRadius: '50%', pointerEvents: 'none', zIndex: 9998, opacity: 0.4,
+    transition: 'transform 0.35s ease, opacity 0.2s', transform: 'translate(-50%, -50%)',
   },
 }
