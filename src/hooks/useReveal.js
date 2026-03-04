@@ -12,15 +12,23 @@ export function useReveal() {
   }, [])
 }
 
+import { useState, useEffect } from 'react'
+
+
 export function useBreakpoint() {
-  const [width, setWidth] = useState(() => window.innerWidth)
+  const [width, setWidth] = useState(
+    () => document.documentElement.clientWidth
+  )
 
   useEffect(() => {
-    const handler = () => setWidth(window.innerWidth)
-    const mq = window.matchMedia('(max-width: 1023px)')
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setWidth(entry.contentRect.width)
+      }
+    })
 
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
+    observer.observe(document.documentElement)
+    return () => observer.disconnect()
   }, [])
 
   return {
